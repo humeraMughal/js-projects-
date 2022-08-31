@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video PopUp window</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #141414;
+      }
+      .videoThumContainer {
+        overflow: hidden;
+        padding: 10px;
+        max-width: 750px;
+        margin: 50px auto 10px auto;
+        border: 2px solid red;
+      }
+      .videoThumContainer .thumDiv {
+        overflow: hidden;
+        width: 100%;
+        height: 350px;
+        border-radius: 20px;
+      }
+      .videoThumContainer .thumDiv img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .thumCaption {
+        color: #fff;
+        margin: 28px 0;
+        font-size: 1.4rem;
+      }
+      .details {
+        margin-top: 10px;
+      }
+      .btn {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: burlywood;
+        border: none;
+        border-radius: 10px;
+        transition: all 0.4s;
+      }
+      .btn:hover {
+        filter: brightness(0.8);
+      }
+      .videoContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 500ms;
+      }
+      .videoContainer.active {
+        visibility: visible;
+        opacity: 1;
+      }
+      .videoContainer video {
+        position: relative;
+        top: 0;
+        outline: none;
+        max-width: 80%;
+      }
+      #closeBtn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+      }
+      #closeBtn::before,
+      #closeBtn::after {
+        content: "";
+        background-color: red;
+        height: 100%;
+        width: 5px;
+        border-radius: 10px;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+      }
+      #closeBtn::before {
+        transform: rotate(45deg);
+      }
+      #closeBtn::after {
+        transform: rotate(-45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="videoThumContainer">
+      <div class="thumDiv">
+        <img
+          src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661974211/jsProjects/girls-gd5f7de2bb_1920_izakdt.jpg"
+        />
+      </div>
+      <div class="thumCaption">
+        <div class="thumTitle">
+          <h2>Title Name</h2>
+        </div>
+        <div class="details">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis
+          aliquid mollitia, veniam qui beatae impedit nobis, aspernatur cum,
+          recusandae nesciunt quo similique fugit possimus deleniti magni
+          doloremque nam ipsam ut!
+        </div>
+      </div>
+      <button title="Play Video" class="btn">Watch now</button>
+    </div>
+    <div class="videoContainer">
+      <video
+        src="https://res.cloudinary.com/dp5j8rh2u/video/upload/v1661973363/jsProjects/Cat_-_128504_cpzgri.mp4"
+        controls
+        muted
+      ></video>
+      <span id="closeBtn"></span>
+    </div>
+
+    <script>
+      const popUpBtn = document.querySelector(".btn");
+      const closeBtn = document.querySelector("#closeBtn");
+      const videoContainer = document.querySelector(".videoContainer");
+      const videoTag = document.querySelector("video");
+
+      popUpBtn.addEventListener("click", () => {
+        document.body.style.overflow = "hidden";
+        videoContainer.classList.add("active");
+        videoTag.autoplay = true;
+      });
+      closeBtn.addEventListener("click", () => {
+        document.body.style.overflow = "auto";
+        videoContainer.classList.remove("active");
+        videoTag.pause();
+        videoTag.currentTime = 0;
+      });
+      document.addEventListener("click", (e) => {
+        if (e.target.className == "videoContainer active") {
+          document.body.style.overflow = "auto";
+          videoContainer.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
