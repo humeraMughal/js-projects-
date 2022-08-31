@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Images Slider 1.0</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: darkslateblue;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .container {
+        border: 2px solid red;
+        width: 500px;
+        height: 300px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px black;
+        overflow: hidden;
+        position: relative;
+      }
+      .img-container {
+        display: flex;
+        transition: all .8s;
+        
+        /* transform: translateX(-500px); */
+      }
+      .img-container img {
+        object-fit: cover;
+        height: auto;
+      }
+      .arrows {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        background-color: bisque;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 5px;
+        cursor: pointer;
+      }
+      .arrows.next {
+        position: absolute;
+        right: 0;
+      }
+      .arrows.prev {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="img-container">
+        <img src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661975576/jsProjects/lake-g7a5dfa721_1920_i3fbgd.jpg" width="500px" height="300px" />
+        <img src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661974211/jsProjects/girls-gd5f7de2bb_1920_izakdt.jpg" width="500px" height="300px" />
+        <img src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661977714/jsProjects/sunrise-1634197_1920_ttpz7x.jpg" width="500px" height="300px" />
+        <img src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661977747/jsProjects/lions-577104_1920_ccakoo.jpg" width="500px" height="300px" />
+        <img src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661977896/jsProjects/father-and-son-2258681_1920_w3mlna.jpg" width="500px" height="300px" />
+      </div>
+      <span class="arrows next" >&#62</span>
+      <span class="arrows prev" >&#60</span>
+    </div>
+    <script>
+      const imgContainer = document.querySelector(".img-container");
+      const containerEle = document.querySelector(".container");
+      const imgEl = imgContainer.querySelectorAll('img');
+      const nextEle = document.querySelector(".next");
+      const prevEle = document.querySelector(".prev");
+      let curImg = 1;
+      let timeClear;
+      containerEle.addEventListener('mouseover', ()=> {
+        clearTimeout(timeClear);
+        
+      })
+      containerEle.addEventListener('mouseout', ()=> {
+        clearTimeout(timeClear);
+        sliding();
+      })
+      nextEle.addEventListener('click', () => {
+        curImg++;
+        clearTimeout(timeClear);
+        sliding();
+      })
+      prevEle.addEventListener('click', ()=>{
+        curImg--;
+        clearTimeout(timeClear)
+        sliding();
+      })
+      sliding();
+      
+      function sliding (){
+        if(curImg > imgEl.length){
+          curImg = 1;
+        } else if (curImg < 1){
+          curImg = imgEl.length;
+        }
+        imgContainer.style.transform = `translateX(${(curImg - 1) * -500}px)`;
+        timeClear = setTimeout(()=> {
+          curImg++;
+          sliding();
+        },2000)
+      }
+
+    </script>
+  </body>
+</html>
