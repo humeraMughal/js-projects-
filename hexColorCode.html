@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hex Color Code</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      h2 {
+        text-align: center;
+        margin: 10px 0;
+      }
+      button {
+        position: relative;
+        left: 50%;
+        padding: 10px 20px;
+        transform: translate(-50%);
+        background-color: dimgray;
+        margin: 20px 0;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      button:hover {
+        filter: brightness(0.6);
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 3rem;
+      }
+      .color-container {
+        background-color: tomato;
+        height: 100px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        border: 2px solid black;
+        box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.6);
+        text-shadow: 2px 2px 5px black;
+        color: #fff;
+        font-weight: bolder;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 50ms;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Hex Color Code Gen</h2>
+    <button id="btn" title="new code">Color Code</button>
+    <div class="container"></div>
+
+    <script>
+      const containerEl = document.querySelector(".container");
+
+      const btn = document.getElementById("btn");
+      for (let index = 0; index < 30; index++) {
+        const colorContainer = document.createElement("div");
+        colorContainer.title = "Click to Copy";
+        colorContainer.classList.add("color-container");
+        containerEl.appendChild(colorContainer);
+      }
+
+      const colorContainerEl = document.querySelectorAll(".color-container");
+
+      newColorGen();
+      function newColorGen() {
+        colorContainerEl.forEach((i) => {
+          const newColorCode = colorGen();
+          i.style.backgroundColor = `#${newColorCode}`;
+          i.textContent = `#${newColorCode}`;
+          i.addEventListener("mousedown", () => {
+            navigator.clipboard.writeText(newColorCode);
+            i.style.transform = "scale(.9)";
+            setTimeout(() => {
+              i.style.transform = "scale(1)";
+            }, 200);
+          });
+        });
+      }
+      btn.addEventListener("click", newColorGen);
+      function colorGen() {
+        const char = "0123456789abcdef";
+        const clrCodelen = 6;
+        let colorCode = "";
+        for (i = 0; i < clrCodelen; i++) {
+          const rannum = Math.floor(Math.random() * char.length);
+          colorCode += char.slice(rannum, rannum + 1);
+        }
+        return colorCode;
+      }
+    </script>
+  </body>
+</html>
