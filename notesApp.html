@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App in JS</title>
+    <style>
+      @font-face {
+        font-family: "itc";
+        src: url("/fonts/itc.otf");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #main {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #121212;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+      .notes {
+        margin: 20px 10px;
+        height: 300px;
+        width: calc(25% - 20px);
+        background-color: indianred;
+      }
+      .notes-tool {
+        width: 100%;
+        padding: 5px;
+        background-color: darkslategray;
+        user-select: none;
+        float: right;
+        display: flex;
+        justify-content: end;
+        color: #fff;
+      }
+      #addNotes {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        padding: 10px 20px;
+        transform: translateX(-50%);
+        cursor: pointer;
+      }
+      .notes textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 14px;
+        font-family: "itc";
+      }
+    </style>
+  </head>
+  <body>
+    <button id="addNotes">Add Notes</button>
+    <div id="main">
+      <!-- <div class="notes">
+        <div class="notes-tool">
+          <span style="cursor: pointer">Save</span>
+          <span style="margin-left: 10px; cursor: pointer">Delete</span>
+        </div>
+        <textarea placeholder="write your notes here....." autofocus></textarea>
+      </div> -->
+    </div>
+    <script>
+      const mainEle = document.querySelector("#main");
+      const btnAddNOtes = document.querySelector("#addNotes");
+
+      function savenotes() {
+        const notes = document.querySelectorAll(".notes textarea");
+        const data = [];
+
+        notes.forEach((note) => {
+          data.push(note.value);
+        });
+        // console.log(data);
+        if (data.length === 0) {
+          localStorage.removeItem("notes");
+        } else {
+          localStorage.setItem("notes", JSON.stringify(data));
+        }
+      }
+
+      btnAddNOtes.addEventListener("click", () => {
+        addnote();
+      });
+
+      const addnote = (text = "") => {
+        const noteEle = document.createElement("div");
+        noteEle.classList.add("notes");
+        noteEle.innerHTML = `
+        <div class="notes-tool">
+          <span class='save' style="cursor: pointer">Save</span>
+          <span class='trash' style="margin-left: 10px; cursor: pointer">Delete</span>
+        </div>
+        <textarea placeholder="write your notes here....." autofocus>${text}</textarea>
+        `;
+        const delteBtn = noteEle.querySelector(".trash");
+        delteBtn.addEventListener("click", () => {
+          noteEle.remove();
+          savenotes();
+        });
+
+        const saveBtn = noteEle.querySelector(".save");
+        saveBtn.addEventListener("click", () => {
+          savenotes();
+        });
+        mainEle.appendChild(noteEle);
+        savenotes();
+      };
+
+      (function () {
+        const lsnotes = JSON.parse(localStorage.getItem("notes"));
+        if (lsnotes === null) {
+          addnote();
+        } else {
+          lsnotes.forEach((lsnote) => {
+            addnote(lsnote);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
