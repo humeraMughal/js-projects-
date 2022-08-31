@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      @font-face {
+        font-family: "itc";
+        src: url("/fonts/itc.otf");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #5e8cf5;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        background-color: antiquewhite;
+        width: 400px;
+        height: 300px;
+        overflow-y: auto;
+      }
+      main input {
+        background-color: inherit;
+        width: 100%;
+        font-size: 15px;
+        padding: 8px;
+        border: none;
+        outline: none;
+        box-shadow: 0px 0px 3px gray;
+        font-family: "itc";
+      }
+      ul {
+        list-style: none;
+        margin: 10px 0;
+      }
+      ul li {
+        background-color: #8faaac;
+        padding: 5px;
+        user-select: none;
+        margin-top: 5px;
+        position: relative;
+        font-family: "itc";
+        text-align: justify;
+        padding-right: 20px;
+      }
+      ul li span {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .done {
+        background-color: #c3bfc7;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <input
+        type="text"
+        id="to-doList"
+        autofocus
+        placeholder="Write something here...."
+      />
+      <ul></ul>
+    </main>
+
+    <script>
+      let todoList = document.querySelector("#to-doList");
+      let ul = document.querySelector("ul");
+
+      todoList.addEventListener("keyup", (e) => {
+        if (e.key === "Enter" && todoList.value !== "") {
+          const li = document.createElement("li");
+          ul.appendChild(li);
+          li.innerHTML = `${todoList.value}<span>X</span>`;
+          todoList.value = "";
+          li.addEventListener("click", () => {
+            li.classList.toggle("done");
+          });
+          li.querySelector("span").addEventListener("click", () => {
+            li.remove();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
