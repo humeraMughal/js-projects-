@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/javatest.css" />
+    <style>
+      .container {
+        border: 2px solid red;
+        width: 25vw;
+        padding: 10px;
+        margin: auto;
+        user-select: none;
+      }
+
+      .container h1 {
+        margin: 0;
+        /* border: 2px solid darkslateblue; */
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .calcu-input {
+        width: 100%;
+        border: 4px solid black;
+        border-radius: 5px;
+        box-sizing: border-box;
+        height: 50px;
+        overflow: hidden;
+      }
+
+      #input {
+        border: none;
+        outline: none;
+        width: 85%;
+        height: 97%;
+        font-size: 25px;
+      }
+
+      #input:active {
+        outline: none;
+      }
+
+      #clear {
+        width: 31px;
+        float: right;
+        height: 100%;
+        text-align: center;
+        padding-top: 13px;
+        background-color: dimgrey;
+        color: #fff;
+        border-left: 4px solid black;
+      }
+
+      .disGrid {
+        display: grid;
+        grid-template-columns: 75px 75px 75px auto;
+        grid-gap: 10px;
+        margin-top: 10px;
+      }
+
+      .allBtn {
+        background-color: dimgrey;
+        text-align: center;
+        color: #fff;
+        border: 4px solid black;
+        border-radius: 5px;
+        padding: 5px 0;
+        font-weight: bolder;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculator</h1>
+      <div class="calcu-input">
+        <input type="text" id="input" class="input" />
+        <div class="" id="clear" onclick="clr()">C</div>
+      </div>
+      <div class="disGrid">
+        <div class="allBtn" onclick="writ('1')">1</div>
+        <div class="allBtn" onclick="writ('2')">2</div>
+        <div class="allBtn" onclick="writ('3')">3</div>
+        <div class="allBtn" onclick="writ('/')">/</div>
+        <div class="allBtn" onclick="writ('4')">4</div>
+        <div class="allBtn" onclick="writ('5')">5</div>
+        <div class="allBtn" onclick="writ('6')">6</div>
+        <div class="allBtn" onclick="writ('-')">-</div>
+        <div class="allBtn" onclick="writ('7')">7</div>
+        <div class="allBtn" onclick="writ('8')">8</div>
+        <div class="allBtn" onclick="writ('9')">9</div>
+        <div class="allBtn" onclick="writ('+')">+</div>
+        <div class="allBtn" onclick="writ('.')">.</div>
+        <div class="allBtn" onclick="writ('0')">0</div>
+        <div class="allBtn" onclick="solve()">=</div>
+        <div class="allBtn" onclick="writ('*')">*</div>
+      </div>
+    </div>
+
+    <script>
+      let Val = document.getElementById("input");
+
+      // Val.addEventListener("input", function () {
+      //   console.log(Val.value);
+      // });
+
+      function solve() {
+        let x = eval(Val.value);
+        Val.value = x;
+      }
+
+      function clr() {
+        Val.value = "";
+      }
+
+      function writ(val) {
+        Val.value += val;
+      }
+    </script>
+  </body>
+</html>
