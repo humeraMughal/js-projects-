@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/stopwtch.css" />
+    <title>Stop Watch</title>
+  </head>
+  <body>
+    <div class="time">
+      <span class="digit" id="hr">00</span>
+      <span class="text">hr</span>
+      <span class="digit" id="mints">00</span>
+      <span class="text">mints</span>
+      <span class="digit" id="sec">00</span>
+      <span class="text">sec</span>
+      <span class="digit" id="count">count</span>
+    </div>
+    <div class="btn-container">
+      <button class="btn" id="reset" onclick="reset()">Reset</button>
+      <button class="btn" id="start" onclick="start()">Start</button>
+      <button class="btn" id="pause" onclick="pause()">Pause</button>
+    </div>
+    <script>
+      let hr = 0;
+      let mint = 0;
+      let sec = 0;
+      let count = 0;
+      let timer = false;
+
+      function start() {
+        timer = true;
+        stopWatch();
+      }
+
+      function reset() {
+        timer = false;
+        if (count == 0) {
+          alert("please start a timer");
+        } else {
+          plstart();
+        }
+      }
+
+      function pause() {
+        timer = false;
+      }
+
+      function stopWatch() {
+        if (timer == true) {
+          count = count + 1;
+
+          if (count >= 99) {
+            sec = sec + 1;
+            count = 0;
+          }
+
+          if (sec == 60) {
+            mint = mint + 1;
+            sec = 0;
+          }
+
+          if (mint == 60) {
+            hr = hr + 1;
+            mint = 0;
+          }
+
+          let hrst = hr;
+          let mintst = mint;
+          let secst = sec;
+          let countst = count;
+
+          if (hr < 10) {
+            hrst = "0" + hrst;
+          }
+
+          if (mint < 10) {
+            mintst = "0" + mintst;
+          }
+
+          if (sec < 10) {
+            secst = "0" + secst;
+          }
+
+          if (count < 10) {
+            countst = "0" + countst;
+          }
+
+          document.getElementById("count").innerHTML = countst;
+          document.getElementById("sec").innerHTML = secst;
+          document.getElementById("mints").innerHTML = mintst;
+          document.getElementById("hr").innerHTML = hrst;
+          setTimeout("stopWatch()", 10);
+        }
+      }
+
+      function plstart() {
+        timer == false;
+        hr = 0;
+        sec = 0;
+        mint = 0;
+        count = 0;
+        let rest = document.getElementsByClassName("digit");
+        for (x of rest) {
+          x.innerHTML = "00";
+        }
+      }
+    </script>
+  </body>
+</html>
