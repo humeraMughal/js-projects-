@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplcation App</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: steelblue;
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        place-items: center;
+      }
+      .form {
+        background-color: #fff;
+        width: 423px;
+        padding: 10px;
+        box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+      }
+
+      .form.vali {
+        animation: validtion 500ms ease-in;
+      }
+      .score {
+        padding: 5px;
+        border-radius: 8px;
+        margin: 10px 0;
+        text-align: right;
+        color: orangered;
+      }
+      .input {
+        display: block;
+        text-align: center;
+        width: 50%;
+        margin-left: 25%;
+        border: 3px solid orangered;
+        padding: 5px;
+        outline: none;
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+      }
+      .input::placeholder {
+        color: darkgrey;
+      }
+      .btn {
+        width: 50%;
+        padding: 5px;
+        margin: 10px 25%;
+        background-color: orangered;
+        color: #fff;
+        transition: all 0.2s;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+      }
+      .btn:hover {
+        filter: brightness(0.877);
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" class="form">
+      <h4 class="score">Score: 0</h4>
+      <h1 class="question">what is 2 multiply by 2?</h1>
+      <input
+        type="text"
+        class="input"
+        placeholder="type your anser"
+        autofocus
+        autocomplete="off"
+      />
+      <button class="btn" type="submit">Submit</button>
+    </form>
+
+    <script>
+      const num1 = Math.floor(Math.random() * (11 - 1) + 1);
+      const num2 = Math.floor(Math.random() * (11 - 1) + 1);
+      const quesElemnt = document.querySelector(".question");
+      const inputElemnt = document.querySelector(".input");
+      const formElemnt = document.querySelector(".form");
+      const scoreElemnt = document.querySelector(".score");
+      const corctAnser = num1 * num2;
+      let score = JSON.parse(localStorage.getItem("score"));
+      quesElemnt.innerHTML = `what is ${num1} mutliply by ${num2}?`;
+      scoreElemnt.innerHTML = `Score: ${score}`;
+      formElemnt.addEventListener("submit", () => {
+        let userans = parseInt(inputElemnt.value);
+        if (userans === corctAnser) {
+          score++;
+          localstrg();
+        } else {
+          score--;
+          localstrg();
+        }
+        
+      });
+
+      function localstrg() {
+        localStorage.setItem("score", JSON.stringify(score));
+      }
+    </script>
+  </body>
+</html>
