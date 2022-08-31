@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Changer</title>
+  </head>
+  <style>
+    body {
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: xx-large;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    #img {
+      max-width: 1100px;
+      min-width: 300px;
+      margin: 0 auto;
+      height: 450px;
+      margin-top: 10px;
+    }
+    #img > img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    p {
+      max-width: 1100px;
+      min-width: 300px;
+      margin: 0 auto 4rem auto;
+      margin-top: 10px;
+      font-size: 1rem;
+      text-align: justify;
+    }
+
+    .color-switch {
+      max-width: 1100px;
+      min-width: 300px;
+      margin: 0 auto;
+      text-align: right;
+    }
+    .clrBtn {
+      height: 1.4rem;
+      width: 1.4rem;
+      display: inline-block;
+      border: 2px solid black;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #red {
+      background-color: red;
+    }
+    #green {
+      background-color: green;
+    }
+    #white {
+      background-color: white;
+    }
+
+    #black {
+      background-color: black;
+    }
+    .logo {
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .logo > img {
+      height: 4rem;
+      width: 4rem;
+      object-fit: cover;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: cadetblue;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    nav li {
+      list-style: none;
+      margin: 0 5rem;
+      font-size: 1.5rem;
+    }
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      transition: all 1s ease;
+    }
+
+    .form-container {
+      text-align: center;
+      background-color: skyblue;
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form {
+      /* display: block; */
+      margin-top: 1rem;
+    }
+    #username,
+    #password {
+      width: 12rem;
+      padding: 10px;
+      margin: 7px;
+    }
+    input[type="submit"] {
+      width: 13.4rem;
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px;
+    }
+
+    .error {
+      margin: 0;
+      margin-right: 0px;
+      color: red;
+      text-align: center;
+      margin-right: 6rem;
+    }
+  </style>
+  <body>
+    <div class="logo">
+      <img
+        src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661981392/jsProjects/ggggggggggggg_ndoeeg.jpg"
+      />
+    </div>
+
+    <div class="color-switch">
+      <span class="clrBtn" id="red" onclick="colorChnge('red')"></span>
+      <span class="clrBtn" id="green" onclick="colorChnge('green')"></span>
+      <span class="clrBtn" id="white" onclick="colorChnge('#fff')"></span>
+      <span class="clrBtn" id="black" onclick="colorChnge('black')"></span>
+    </div>
+    <nav class="aaa" id="naav">
+      <li>Home</li>
+      <li>About</li>
+      <li>Blog</li>
+      <li>Contact us</li>
+    </nav>
+    <h1 class="aaa">Background Changer</h1>
+
+    <div id="img">
+      <img
+        src="https://res.cloudinary.com/dp5j8rh2u/image/upload/v1661975576/jsProjects/lake-g7a5dfa721_1920_i3fbgd.jpg"
+      />
+    </div>
+
+    <p class="aaa">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis iusto
+      placeat delectus eaque consectetur? Autem neque facere voluptatem, sequi
+      rerum vel eum fugit minima animi est eligendi ut cum reprehenderit soluta
+      sit necessitatibus voluptate voluptatibus tempore vitae minus dolore
+      aliquid tenetur? Ipsum temporibus pariatur saepe exercitationem doloribus
+      quasi eum sequi cumque repellat porro hic, ratione facere quo quam dolores
+      omnis quia dolorem quas? Consectetur unde architecto ratione dolor
+      suscipit rem incidunt fugit aliquam, veniam ducimus sequi id voluptatem
+      voluptates. Quae consequatur sunt magnam id amet autem dolorum, possimus
+      ipsa voluptas provident quo repudiandae aut incidunt molestiae saepe
+      exercitationem dolore sit consequuntur quisquam animi? Cum accusantium
+      optio voluptates quidem. Sit, repellendus tempore aspernatur facere
+      quibusdam fuga ipsum dolorem nam aliquid veritatis esse architecto unde ut
+      deleniti, eveniet officia? Maiores eos provident magni nulla ullam
+      delectus distinctio, debitis minus voluptas ipsum molestiae fugiat
+      laudantium doloribus illum, id ab aliquam tempora, nostrum ex consequatur
+      dolorum inventore earum corporis perspiciatis. Officiis, alias doloribus
+      commodi soluta neque nemo quisquam modi sequi, sapiente nobis vitae
+      nesciunt mollitia quas nam totam. Illo natus voluptates ipsum expedita
+      nulla obcaecati exercitationem culpa laborum rerum cum sapiente amet iure
+      dicta recusandae officiis illum explicabo, temporibus nobis atque soluta
+      hic? Sunt error provident veritatis sed totam aliquam cum vitae molestiae
+      laboriosam ipsum est dignissimos iure soluta quod alias laborum impedit
+      ducimus ipsam hic doloremque, non nam in dicta adipisci. Atque, rerum aut
+      amet incidunt eum animi vitae fugit, inventore magni deserunt debitis
+      maxime ab, omnis culpa! Quis impedit ea rem vel. Laborum, odio tempora,
+      nisi facere eos, ab rem vel quo provident dolor omnis fuga. Natus,
+      blanditiis. Ipsa rem voluptatem voluptate. Distinctio quod, vero
+      aspernatur, numquam aut, fugit explicabo praesentium incidunt nostrum sunt
+      fugiat sapiente accusamus sit nam sed vel dicta? Consequatur dicta rerum
+      saepe amet unde magni esse libero autem tempora est blanditiis, ex in
+      incidunt quas sequi reprehenderit odio corrupti quisquam voluptatem soluta
+      natus dignissimos iusto velit. Neque, rerum. Officiis quia magnam amet,
+      vitae animi obcaecati excepturi sunt! Maxime quae, molestiae
+      exercitationem consectetur quod, ipsa impedit blanditiis saepe ullam sed
+      adipisci corrupti amet ducimus dolores molestias voluptatibus, debitis
+      voluptatum a! Beatae numquam, architecto debitis quam magni laboriosam
+      veritatis, soluta saepe ullam, non reprehenderit. Ipsum quaerat maxime
+      temporibus blanditiis vero optio veniam sed! Cum ex, quia iusto magni
+      officia libero sit. Alias eum eligendi deserunt eaque, a tenetur
+      reprehenderit inventore hic ad voluptatem reiciendis maiores. Totam
+      quibusdam ab consequatur officia voluptate et sint natus nostrum delectus
+      ducimus suscipit ea impedit debitis dicta error praesentium quis nam
+      repudiandae illum soluta, hic similique obcaecati saepe! In, ipsum tempora
+      quasi aperiam atque voluptas reiciendis exercitationem eveniet cumque
+      enim. Deleniti alias error quaerat magni aperiam neque saepe excepturi
+      eveniet voluptates veritatis, esse, reprehenderit porro aliquam quis.
+      Facere consequatur, cum optio possimus expedita unde, numquam veniam ullam
+      repellat sint obcaecati reprehenderit necessitatibus ad minima illum
+      cumque est, natus pariatur ratione! Dolores nesciunt, similique obcaecati
+      repellat ullam, dicta magni aspernatur voluptatibus quaerat pariatur
+      corporis assumenda expedita reiciendis autem vero, nostrum quas qui
+      voluptates excepturi laudantium aliquid!
+    </p>
+
+    <div class="form-container">
+      <h1>Login Form</h1>
+      <form action="" id="form" onsubmit="return validation()">
+        <input type="text" placeholder="User Name" id="username" /><br />
+        <p id="userError" class="error"></p>
+        <input type="password" placeholder="password" id="password" /><br />
+        <p id="pswdError" class="error"></p>
+        <input type="submit" />
+      </form>
+    </div>
+    <script>
+      // background color changer
+      function colorChnge(clr) {
+        document.body.style.backgroundColor = clr;
+        if (clr == "black") {
+          document.body.style.color = "#fff";
+        } else {
+          document.body.style.color = "black";
+        }
+      }
+      // sticky menu scricpt
+      window.addEventListener("scroll", function () {
+        let fixed = document.getElementById("naav");
+        if (window.pageYOffset >= 190) {
+          fixed.classList.add("fixed");
+        } else {
+          fixed.classList.remove("fixed");
+        }
+      });
+
+      // form validation
+      let username = document.getElementById("username");
+      let pswd = document.getElementById("password");
+      let send = 1;
+      function validation() {
+        if (username.value == "") {
+          document.getElementById("userError").innerHTML = "username is empty";
+          send = 0;
+        } else if (username.value.length < 3) {
+          document.getElementById("userError").innerHTML =
+            "username requide 3 char";
+          send = 0;
+        } else {
+          document.getElementById("userError").innerHTML = "";
+          send = 1;
+        }
+
+        if (pswd.value == "") {
+          document.getElementById("pswdError").innerHTML = "passcode is empty";
+          send = 0;
+        } else {
+          document.getElementById("pswdError").innerHTML = "";
+          send = 1;
+        }
+
+        if (send) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
