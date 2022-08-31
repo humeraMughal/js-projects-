@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        background-color: tomato;
+        user-select: none;
+      }
+      #btn {
+        border: navajowhite;
+        background-color: red;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="btn">Color Change</span>
+    <script>
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", colr);
+      function colr() {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        let color = [r, g, b];
+        document.body.style.backgroundColor = `rgb(${color})`;
+        btn.textContent = color;
+      }
+    </script>
+  </body>
+</html>
