@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: #121313;
+      }
+
+      .container {
+        background-color: #ff6a7f;
+        overflow: hidden;
+        width: 30%;
+      }
+
+      #pswdShow {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: dodgerblue;
+        color: white;
+      }
+
+      input[type="number"] {
+        width: 35px;
+        float: right;
+      }
+
+      input[type="checkbox"] {
+        float: right;
+        margin: 0 5px;
+      }
+
+      .pss-len,
+      .num-set,
+      .lower-set,
+      .upper-set,
+      .sym-set {
+        margin: 10px;
+      }
+
+      .set-btn {
+        text-align: center;
+      }
+
+      .btn {
+        cursor: pointer;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="pswdShow">Click to copy</div>
+      <div class="pss-len">
+        Password Length
+        <input type="number" value="6" id="len-set" />
+      </div>
+      <div class="num-set">
+        <label for="num-set"
+          >Include Number
+          <input type="checkbox" id="num-set" checked />
+        </label>
+      </div>
+
+      <div class="lower-set">
+        <label for="lower-set"
+          >LowerCase Latters
+          <input type="checkbox" id="lower-set" />
+        </label>
+      </div>
+
+      <div class="upper-set">
+        <label for="upper-set"
+          >UpperCase Latters
+          <input type="checkbox" id="upper-set" />
+        </label>
+      </div>
+
+      <div class="sym-set">
+        <label for="sym-set"
+          >Symbols Latters
+          <input type="checkbox" id="sym-set" />
+        </label>
+      </div>
+      <div class="set-btn">
+        <button class="btn">Make Password</button>
+      </div>
+    </div>
+
+    <script>
+      const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+      const numCase = "1234567890";
+      const symCase = "@#$%^&*()_+=-/?";
+
+      const numChk = document.getElementById("num-set");
+      const lowerChk = document.getElementById("lower-set");
+      const upperChk = document.getElementById("upper-set");
+      const symChk = document.getElementById("sym-set");
+      const lenSet = document.getElementById("len-set");
+      const pswdshow = document.getElementById("pswdShow");
+
+      const randomData = (e) => {
+        return e[Math.floor(Math.random() * e.length)];
+      };
+
+      const Password = (pswd = "") => {
+        if (numChk.checked) {
+          pswd += randomData(numCase);
+        }
+        if (lowerChk.checked) {
+          pswd += randomData(lowerCase);
+        }
+        if (upperChk.checked) {
+          pswd += randomData(upperCase);
+        }
+        if (symChk.checked) {
+          pswd += randomData(symCase);
+        }
+        if (pswd.length < lenSet.value) {
+          return Password(pswd);
+        }
+        pswdshow.innerHTML = trimPswd(pswd, lenSet.value);
+      };
+
+      document.querySelector(".btn").addEventListener("click", function () {
+        Password();
+      });
+
+      function trimPswd(p, len) {
+        if (p.length > len) {
+          return p.slice(0, len);
+        } else {
+          return p;
+        }
+      }
+    </script>
+  </body>
+</html>
