@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Type Effect</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: orchid;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+    <!-- <h1>I am a Youtuber</h1> -->
+    <!-- </div> -->
+
+    <script>
+      const conEle = document.querySelector("body");
+      const allText = ["Youtuber", "Freelancer", "Web Developer", "Instructor"];
+      let allTextIndex = 0;
+      let charIndex = 0;
+      autoText();
+      function autoText() {
+        charIndex++;
+        conEle.innerHTML = `<h1>I am ${
+          allText[allTextIndex].slice(0, 1) === "I" ? "an" : "a"
+        } ${allText[allTextIndex].slice(0, charIndex)}</h1>`;
+        if (charIndex === allText[allTextIndex].length) {
+          allTextIndex++;
+          charIndex = 0;
+        }
+        if (allTextIndex === allText.length) {
+          allTextIndex = 0;
+        }
+        setTimeout(autoText, 300);
+      }
+    </script>
+  </body>
+</html>
