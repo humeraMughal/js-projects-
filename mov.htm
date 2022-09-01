@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ur">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #121212;
+        /* height: 2000px; */
+      }
+      .container {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        color: #fff;
+      }
+      .movi-box {
+        width: calc(12.5% - 10px);
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 10px;
+        user-select: none;
+        margin: 10px 5px;
+        cursor: pointer;
+        display: none;
+      }
+      .movi-box:first-child,
+      .movi-box:nth-child(2),
+      .movi-box:nth-child(3),
+      .movi-box:nth-child(4),
+      .movi-box:nth-child(5),
+      .movi-box:nth-child(6),
+      .movi-box:nth-child(7),
+      .movi-box:nth-child(8),
+      .movi-box:nth-child(9),
+      .movi-box:nth-child(10),
+      .movi-box:nth-child(11),
+      .movi-box:nth-child(12),
+      .movi-box:nth-child(13),
+      .movi-box:nth-child(14),
+      .movi-box:nth-child(15),
+      .movi-box:nth-child(16) {
+        display: block;
+      }
+      .movi-box h3 {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 5px;
+        background-color: rgb(0 0 0 /0.5);
+      }
+      .movi-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .movi-box .rating {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        color: #fff;
+        background-color: red;
+        padding: 6px;
+        border-radius: 0 10px;
+        background-color: rgb(0 0 0 /0.5);
+      }
+      .details-container {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(0 0 0 /0.5);
+        backdrop-filter: blur(5px);
+        display: none;
+        user-select: none;
+      }
+      .details-container .details-box {
+        background-color: black;
+        width: 70vw;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+      }
+      .details-container .details-box .details-poster {
+        height: 200px;
+        width: 140px;
+        margin: 0 10px 10px 0;
+        overflow: hidden;
+      }
+      .details-container .details-box .details-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .details-container .details-title {
+        display: inline-block;
+        color: #fff;
+        position: absolute;
+        top: 160px;
+        left: 21%;
+      }
+      .details-container .details-infoo {
+        color: #fff;
+      }
+      .loadMore {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+      }
+      .load-more {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container"></div>
+      <div class="loadMore">
+        <button class="load-more btn">Load more</button>
+      </div>
+    </main>
+
+    <div class="details-container"></div>
+
+    <script>
+      const container = document.querySelector(".container");
+      const loadBtn = document.querySelector(".btn");
+      const detailsContainer = document.querySelector(".details-container");
+      let currentItem = 16;
+
+      const getMovi = () => {
+        fetch(
+          "https://res.cloudinary.com/dp5j8rh2u/raw/upload/v1662018733/aa_vsyyar.json"
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((mData) => {
+              const contner = document.createElement("div");
+              contner.classList.add("movi-box");
+              contner.innerHTML = `
+                <h3>${mData.Title}</h3>
+                <img src="${mData.Poster}" alt="" />
+                <span class="rating">${mData.Rating}</span>`;
+              container.appendChild(contner);
+              contner.onclick = () => showdtta(mData);
+            });
+          });
+      };
+      loadBtn.addEventListener("click", () => {
+        let boxs = [...document.querySelectorAll(".movi-box")];
+        for (i = currentItem; i < currentItem + 16; i++) {
+          boxs[i].style.display = "block";
+        }
+        currentItem += 16;
+      });
+      function showdtta(ddtta) {
+        document.body.style.overflow = "hidden";
+        detailsContainer.style.display = "block";
+        detailsContainer.innerHTML = ` <div class="details-box">
+        <div class="details-poster">
+          <img src="${ddtta.Poster}" />
+        </div>
+        <h1 class="details-title">${ddtta.Title}</h1>
+        <p class="details-infoo">${ddtta.Info}</p>
+      </div>`;
+        detailsContainer.addEventListener("click", (e) => {
+          if (e.target.className === "details-container") {
+            document.body.style.overflow = "auto";
+            detailsContainer.style.display = "none";
+          }
+        });
+      }
+
+      getMovi();
+    </script>
+  </body>
+</html>
